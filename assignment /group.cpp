@@ -117,41 +117,59 @@ int main() {
         cout << "9. Exit" << endl;
         cout << "Enter your choice: ";
         cin >> choice;
-
-        switch (choice) {
-        case 1:
-            cout << "Enter value to enqueue: ";
-            cin >> value;
-            q.enqueue(value);
-            break;
-        case 2:
-            q.dequeue();
-            break;
-        case 3:
-            q.display();
-            break;
-        case 4:
-            q.peekFront();
-            break;
-        case 5:
-            q.peekRear();
-            break;
-        case 6:
-            q.getSize();
-            break;
-        case 7:
-            cout << (q.isEmpty() ? "Yes, the queue is empty." : "No, the queue is not empty.") << endl;
-            break;
-        case 8:
-            cout << (q.isFull() ? "Yes, the queue is full." : "No, the queue is not full.") << endl;
-            break;
-        case 9:
-            cout << "Exiting..." << endl;
-            break;
-        default:
-            cout << "Invalid option. Please try again." << endl;
-        }
-    } while (choice != 9);
-
-    return 0;
+switch (choice) {
+    case 1:
+        cout << "Enter value to enqueue: ";
+        cin >> value;
+        q.enqueue(value);
+        break;
+    case 2:
+        q.dequeue();
+        break;
+    case 3:
+        q.display();
+        break;
+    case 4:
+        q.peekFront();
+        break;
+    case 5:
+        q.peekRear();
+        break;
+    case 6:
+        q.getSize();
+        break;
+    case 7:
+        cout << (q.isEmpty() ? "Yes, the queue is empty." : "No, the queue is not empty.") << endl;
+        break;
+    case 8:
+        cout << (q.isFull() ? "Yes, the queue is full." : "No, the queue is not full.") << endl;
+        break;
+    case 9:
+        cout << "Exiting..." << endl;
+        break;
+    case 10:
+        q.clear();
+        cout << "Queue cleared successfully." << endl;
+        break;
+    case 11:
+        cout << "Enter value to search: ";
+        cin >> value;
+        cout << (q.contains(value) ? "Value exists in the queue." : "Value not found in the queue.") << endl;
+        break;
+    case 12:
+        cout << "The maximum capacity of the queue is: " << q.getCapacity() << endl;
+        break;
+    case 13:
+        q.printReverse();
+        break;
+    default:
+        cout << "Invalid option. Please try again." << endl;
 }
+
+
+
+
+
+        
+
+
