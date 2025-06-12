@@ -1,6 +1,5 @@
 #include <iostream>
-#include <limits> 
-// For numeric_limits
+#include <limits>
 using namespace std;
 
 class Queue {
@@ -9,7 +8,6 @@ private:
     int* arr;
 
 public:
-    // Constructor
     explicit Queue(int cap) {
         capacity = cap;
         arr = new int[capacity];
@@ -18,22 +16,18 @@ public:
         size = 0;
     }
 
-    // Destructor
     ~Queue() {
         delete[] arr;
     }
 
-    // Check if the queue is full
     bool isFull() const {
         return size == capacity;
     }
 
-    // Check if the queue is empty
     bool isEmpty() const {
         return size == 0;
     }
 
-    // Enqueue operation
     void enqueue(int item) {
         if (isFull()) {
             cout << "Queue Overflow! Cannot enqueue " << item << endl;
@@ -45,7 +39,6 @@ public:
         cout << "Enqueued: " << item << endl;
     }
 
-    // Dequeue operation
     void dequeue() {
         if (isEmpty()) {
             cout << "Queue Underflow! Nothing to dequeue." << endl;
@@ -56,7 +49,6 @@ public:
         size--;
     }
 
-    // Display queue elements
     void display() const {
         if (isEmpty()) {
             cout << "Queue is empty." << endl;
@@ -69,7 +61,6 @@ public:
         cout << endl;
     }
 
-    // Peek front element
     void peekFront() const {
         if (isEmpty()) {
             cout << "Queue is empty." << endl;
@@ -78,7 +69,6 @@ public:
         }
     }
 
-    // Peek rear element
     void peekRear() const {
         if (isEmpty()) {
             cout << "Queue is empty." << endl;
@@ -87,25 +77,40 @@ public:
         }
     }
 
-    // Get current size
     void getSize() const {
         cout << "Current Queue Size: " << size << endl;
     }
 
-    // Future feature: dynamic resizing (stub)
     void resize(int newCap) {
-        cout << "[Feature not yet implemented] Resize to: " << newCap << endl;
-        // Potential logic: create new array, copy elements, adjust front/rear
+        if (newCap < size) {
+            cout << "New capacity is less than current queue size. Resize aborted." << endl;
+            return;
+        }
+
+        int* newArr = new int[newCap];
+        for (int i = 0; i < size; i++) {
+            newArr[i] = arr[(front + i) % capacity];
+        }
+
+        delete[] arr;
+        arr = newArr;
+        capacity = newCap;
+        front = 0;
+        rear = size - 1;
+
+        cout << "Queue resized to capacity: " << capacity << endl;
+    }
+
+    int getCapacity() const {
+        return capacity;
     }
 };
 
-// Utility: Clear input buffer in case of bad input
 void clearInputBuffer() {
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
 
-// Main function to test the queue
 int main() {
     int cap;
     cout << "Enter capacity of the queue: ";
@@ -128,6 +133,7 @@ int main() {
         cout << "7. Is Queue Empty?" << endl;
         cout << "8. Is Queue Full?" << endl;
         cout << "9. Exit" << endl;
+        cout << "10. Resize Queue (Future Feature)" << endl;
         cout << "Choose an option: ";
 
         if (!(cin >> choice)) {
@@ -170,6 +176,15 @@ int main() {
             case 9:
                 cout << "Exiting... Thank you!" << endl;
                 break;
+            case 10:
+                cout << "Enter new capacity: ";
+                if (!(cin >> value) || value <= 0) {
+                    cout << "Invalid input. Enter a positive integer." << endl;
+                    clearInputBuffer();
+                } else {
+                    q.resize(value);
+                }
+                break;
             default:
                 cout << "Invalid option! Try again." << endl;
         }
@@ -178,4 +193,3 @@ int main() {
 
     return 0;
 }
-
