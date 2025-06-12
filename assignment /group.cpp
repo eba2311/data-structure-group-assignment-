@@ -1,4 +1,6 @@
 #include <iostream>
+#include <limits> 
+// For numeric_limits
 using namespace std;
 
 class Queue {
@@ -8,7 +10,7 @@ private:
 
 public:
     // Constructor
-    Queue(int cap) {
+    explicit Queue(int cap) {
         capacity = cap;
         arr = new int[capacity];
         front = 0;
@@ -22,12 +24,12 @@ public:
     }
 
     // Check if the queue is full
-    bool isFull() {
+    bool isFull() const {
         return size == capacity;
     }
 
     // Check if the queue is empty
-    bool isEmpty() {
+    bool isEmpty() const {
         return size == 0;
     }
 
@@ -55,7 +57,7 @@ public:
     }
 
     // Display queue elements
-    void display() {
+    void display() const {
         if (isEmpty()) {
             cout << "Queue is empty." << endl;
             return;
@@ -68,7 +70,7 @@ public:
     }
 
     // Peek front element
-    void peekFront() {
+    void peekFront() const {
         if (isEmpty()) {
             cout << "Queue is empty." << endl;
         } else {
@@ -77,7 +79,7 @@ public:
     }
 
     // Peek rear element
-    void peekRear() {
+    void peekRear() const {
         if (isEmpty()) {
             cout << "Queue is empty." << endl;
         } else {
@@ -86,16 +88,31 @@ public:
     }
 
     // Get current size
-    void getSize() {
+    void getSize() const {
         cout << "Current Queue Size: " << size << endl;
     }
+
+    // Future feature: dynamic resizing (stub)
+    void resize(int newCap) {
+        cout << "[Feature not yet implemented] Resize to: " << newCap << endl;
+        // Potential logic: create new array, copy elements, adjust front/rear
+    }
 };
+
+// Utility: Clear input buffer in case of bad input
+void clearInputBuffer() {
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+}
 
 // Main function to test the queue
 int main() {
     int cap;
     cout << "Enter capacity of the queue: ";
-    cin >> cap;
+    while (!(cin >> cap) || cap <= 0) {
+        cout << "Invalid input. Enter a positive integer for capacity: ";
+        clearInputBuffer();
+    }
 
     Queue q(cap);
 
@@ -112,12 +129,21 @@ int main() {
         cout << "8. Is Queue Full?" << endl;
         cout << "9. Exit" << endl;
         cout << "Choose an option: ";
-        cin >> choice;
+
+        if (!(cin >> choice)) {
+            cout << "Invalid input! Please enter a number." << endl;
+            clearInputBuffer();
+            continue;
+        }
 
         switch (choice) {
             case 1:
                 cout << "Enter value to enqueue: ";
-                cin >> value;
+                if (!(cin >> value)) {
+                    cout << "Invalid input. Please enter an integer." << endl;
+                    clearInputBuffer();
+                    break;
+                }
                 q.enqueue(value);
                 break;
             case 2:
@@ -152,3 +178,4 @@ int main() {
 
     return 0;
 }
+
