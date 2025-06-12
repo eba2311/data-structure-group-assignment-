@@ -21,133 +21,52 @@ public:
         delete[] arr;
     }
 
-    // 1. Enqueue operation
-    void enqueue(int item) {
+    // Enqueue operation
+    void enqueue(int value) {
         if (isFull()) {
-            cout << "Queue Overflow! Cannot enqueue " << item << endl;
+            cout << "❌ Queue Overflow! Cannot enqueue " << value << endl;
             return;
         }
         rear = (rear + 1) % capacity;
-        arr[rear] = item;
+        arr[rear] = value;
         size++;
-        cout << "Enqueued: " << item << endl;
+        cout << "✅ " << value << " added to the queue.\n";
     }
 
-    // 2. Dequeue operation
+    // Dequeue operation
     void dequeue() {
         if (isEmpty()) {
-            cout << "Queue Underflow! Nothing to dequeue." << endl;
+            cout << "❌ Queue Underflow! Nothing to dequeue.\n";
             return;
         }
-        int item = arr[front];
+        cout << "✅ Removed " << arr[front] << " from the queue.\n";
         front = (front + 1) % capacity;
         size--;
-        cout << "Dequeued: " << item << endl;
     }
 
-    // 3. Display queue
+    // Display all elements
     void display() {
         if (isEmpty()) {
-            cout << "Queue is empty." << endl;
+            cout << "Queue is empty.\n";
             return;
         }
-        cout << "Queue elements: ";
+        cout << "🔽 Queue Elements: ";
         for (int i = 0; i < size; i++) {
             cout << arr[(front + i) % capacity] << " ";
         }
-        cout << endl;
+        cout << "\n";
     }
 
-    // 4. Peek front element
+    // Peek front element
     void peekFront() {
         if (isEmpty()) {
-            cout << "Queue is empty." << endl;
-        } else {
-            cout << "Front Element: " << arr[front] << endl;
+            cout << "Queue is empty.\n";
+            return;
         }
+        cout << "Front Element: " << arr[front] << "\n";
     }
 
-    // 5. Peek rear element
+    // Peek rear element
     void peekRear() {
         if (isEmpty()) {
-            cout << "Queue is empty." << endl;
-        } else {
-            cout << "Rear Element: " << arr[rear] << endl;
-        }
-    }
-
-    // 6. Get current size
-    void getSize() {
-        cout << "Current Queue Size: " << size << endl;
-    }
-
-    // 7. Check if queue is empty
-    bool isEmpty() {
-        return size == 0;
-    }
-
-    // 8. Check if queue is full
-    bool isFull() {
-        return size == capacity;
-    }
-};
-
-int main() {
-    int cap;
-    cout << "Enter capacity of the queue: ";
-    cin >> cap;
-
-    Queue q(cap);
-    int choice, value;
-
-    do {
-        cout << "\n--- Queue Operations Menu ---" << endl;
-        cout << "1. Enqueue" << endl;
-        cout << "2. Dequeue" << endl;
-        cout << "3. Display Queue" << endl;
-        cout << "4. Peek Front" << endl;
-        cout << "5. Peek Rear" << endl;
-        cout << "6. Queue Size" << endl;
-        cout << "7. Is Queue Empty?" << endl;
-        cout << "8. Is Queue Full?" << endl;
-        cout << "9. Exit" << endl;
-        cout << "Choose an option: ";
-        cin >> choice;
-
-        switch (choice) {
-        case 1:
-            cout << "Enter value to enqueue: ";
-            cin >> value;
-            q.enqueue(value);
-            break;
-        case 2:
-            q.dequeue();
-            break;
-        case 3:
-            q.display();
-            break;
-        case 4:
-            q.peekFront();
-            break;
-        case 5:
-            q.peekRear();
-            break;
-        case 6:
-            q.getSize();
-            break;
-        case 7:
-            cout << "Is Empty? " << (q.isEmpty() ? "Yes" : "No") << endl;
-            break;
-        case 8:
-            cout << "Is Full? " << (q.isFull() ? "Yes" : "No") << endl;
-            break;
-        case 9:
-            cout << "Exiting... Thank you!" << endl;
-            break;
-        default:
-            cout << "Invalid option! Try again." << endl;
-        }
-    } while (choice != 9);
-
-    return 0;
-}
+            cout << "Queue is
