@@ -15,12 +15,12 @@ private:
 public:
     void enqueue(int val) {
         q.push(val);
-        cout << "✅ Enqueued " << val << " into the queue.\n";
+        cout << "Enqueued " << val << " into the queue.\n";
     }
 
     void dequeue() {
         if (!q.empty()) {
-            cout << "✅ Dequeued: " << q.front() << endl;
+            cout << "Dequeued: " << q.front() << endl;
             q.pop();
         } else {
             cout << "❌ Queue is empty. Cannot dequeue.\n";
@@ -43,9 +43,9 @@ public:
 
     void peekFront() {
         if (!q.empty()) {
-            cout << "🔎 Front Element: " << q.front() << endl;
+            cout << "Front Element: " << q.front() << endl;
         } else {
-            cout << "❌ Queue is empty.\n";
+            cout << "Queue is empty.\n";
         }
     }
 
@@ -53,9 +53,9 @@ public:
         if (!q.empty()) {
             queue<int> temp = q;
             while (temp.size() > 1) temp.pop();
-            cout << "🔎 Rear Element: " << temp.front() << endl;
+            cout << "Rear Element: " << temp.front() << endl;
         } else {
-            cout << "❌ Queue is empty.\n";
+            cout << "Queue is empty.\n";
         }
     }
 
@@ -70,7 +70,7 @@ public:
         bool found = false;
         while (!temp.empty()) {
             if (temp.front() == key) {
-                cout << "✅ Found " << key << " at position " << pos << ".\n";
+                cout << " Found " << key << " at position " << pos << ".\n";
                 found = true;
             }
             temp.pop();
@@ -88,7 +88,7 @@ public:
                 count++;
             temp.pop();
         }
-        cout << "🔢 Frequency of " << key << ": " << count << endl;
+        cout << "Frequency of " << key << ": " << count << endl;
     }
 
     void reverseQueue() {
@@ -99,7 +99,7 @@ public:
         }
         reverse(v.begin(), v.end());
         for (int x : v) q.push(x);
-        cout << "🔄 Queue reversed.\n";
+        cout << "Queue reversed.\n";
     }
 
     void sortQueue() {
@@ -110,7 +110,7 @@ public:
         }
         sort(v.begin(), v.end());
         for (int x : v) q.push(x);
-        cout << "📊 Queue sorted in ascending order.\n";
+        cout << " Queue sorted in ascending order.\n";
     }
 
     void removeDuplicates() {
@@ -122,7 +122,7 @@ public:
         sort(v.begin(), v.end());
         v.erase(unique(v.begin(), v.end()), v.end());
         for (int x : v) q.push(x);
-        cout << "🧼 Duplicates removed.\n";
+        cout << " Duplicates removed.\n";
     }
 
     void saveToFile(const string& filename) {
@@ -133,13 +133,13 @@ public:
             temp.pop();
         }
         out.close();
-        cout << "💾 Queue saved to " << filename << endl;
+        cout << "Queue saved to " << filename << endl;
     }
 
     void loadFromFile(const string& filename) {
         ifstream in(filename);
         if (!in) {
-            cout << "❌ File not found.\n";
+            cout << "File not found.\n";
             return;
         }
         clear();
@@ -148,7 +148,7 @@ public:
             q.push(value);
         }
         in.close();
-        cout << "📂 Queue loaded from " << filename << endl;
+        cout << " Queue loaded from " << filename << endl;
     }
 
     void convertToStack() {
@@ -158,7 +158,7 @@ public:
             s.push(temp.front());
             temp.pop();
         }
-        cout << "🔁 Stack View (top to bottom): ";
+        cout << "Stack View (top to bottom): ";
         while (!s.empty()) {
             cout << s.top() << " ";
             s.pop();
@@ -168,7 +168,7 @@ public:
 
     void visualView() {
         queue<int> temp = q;
-        cout << "🎨 Visual View: [ ";
+        cout << "Visual View: [ ";
         while (!temp.empty()) {
             cout << setw(3) << temp.front() << " ";
             temp.pop();
@@ -276,13 +276,13 @@ int main() {
                 qm.visualView();
                 break;
             case 16:
-                cout << "📦 Queue size: " << qm.size() << endl;
+                cout << "Queue size: " << qm.size() << endl;
                 break;
             case 0:
-                cout << "👋 Exiting. Goodbye!\n";
+                cout << "Exiting. Goodbye!\n";
                 break;
             default:
-                cout << "❌ Invalid choice. Try again.\n";
+                cout << "Invalid choice. Try again.\n";
         }
     } while (choice != 0);
 
