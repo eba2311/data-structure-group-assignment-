@@ -1,11 +1,9 @@
 #include <iostream>
 using namespace std;
-
 class Queue {
 private:
     int* arr;
     int front, rear, size, capacity;
-
 public:
     // Constructor
     Queue(int cap) {
@@ -20,12 +18,10 @@ public:
         rear = -1;
         size = 0;
     }
-
     // Destructor
     ~Queue() {
         delete[] arr;
     }
-
     // Enqueue operation
     void enqueue(int value) {
         if (isFull()) {
@@ -37,7 +33,6 @@ public:
         size++;
         cout << value << " added to the queue." << endl;
     }
-
     // Dequeue operation
     void dequeue() {
         if (isEmpty()) {
@@ -48,7 +43,6 @@ public:
         front = (front + 1) % capacity;
         size--;
     }
-
     // Display all elements
     void display() const {
         if (isEmpty()) {
@@ -61,7 +55,6 @@ public:
         }
         cout << endl;
     }
-
     // Peek front element
     void peekFront() const {
         if (isEmpty()) {
@@ -70,7 +63,6 @@ public:
         }
         cout << "Front Element: " << arr[front] << endl;
     }
-
     // Peek rear element
     void peekRear() const {
         if (isEmpty()) {
@@ -79,31 +71,25 @@ public:
         }
         cout << "Rear Element: " << arr[rear] << endl;
     }
-
     // Show current size
     void getSize() const {
         cout << "Current Queue Size: " << size << endl;
     }
-
     // Check if queue is empty
     bool isEmpty() const {
         return size == 0;
     }
-
     // Check if queue is full
     bool isFull() const {
         return size == capacity;
     }
 };
-
 int main() {
     int capacity;
     cout << "Enter the capacity of the queue: ";
     cin >> capacity;
-
     Queue q(capacity);
     int choice, value;
-
     do {
         cout << "\n--- Queue Operations Menu ---" << endl;
         cout << "1. Enqueue" << endl;
