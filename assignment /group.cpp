@@ -1,12 +1,10 @@
 #include <iostream>
 #include <limits>
 using namespace std;
-
 class Queue {
 private:
     int front, rear, size, capacity;
     int* arr;
-
 public:
     explicit Queue(int cap) {
         capacity = cap;
@@ -15,19 +13,15 @@ public:
         rear = -1;
         size = 0;
     }
-
     ~Queue() {
         delete[] arr;
     }
-
     bool isFull() const {
         return size == capacity;
     }
-
     bool isEmpty() const {
         return size == 0;
     }
-
     void enqueue(int item) {
         if (isFull()) {
             cout << "Queue Overflow! Cannot enqueue " << item << endl;
@@ -38,7 +32,6 @@ public:
         size++;
         cout << "Enqueued: " << item << endl;
     }
-
     void dequeue() {
         if (isEmpty()) {
             cout << "Queue Underflow! Nothing to dequeue." << endl;
@@ -48,7 +41,6 @@ public:
         front = (front + 1) % capacity;
         size--;
     }
-
     void display() const {
         if (isEmpty()) {
             cout << "Queue is empty." << endl;
@@ -60,7 +52,6 @@ public:
         }
         cout << endl;
     }
-
     void peekFront() const {
         if (isEmpty()) {
             cout << "Queue is empty." << endl;
